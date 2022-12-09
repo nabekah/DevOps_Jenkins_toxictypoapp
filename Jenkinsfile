@@ -45,15 +45,16 @@ pipeline{
                    
                     steps{
                         
-                       
+                        sh "ls -la ${pwd()}"
                         echo 'openjdk8'
-                     
+                        
                     }
             }
 
             stage("e2e python"){
                 agent { docker 'python:2.7.18-slim-stretch' }
                 steps{
+                   sh "ls -la ${pwd()}"
                     echo 'python'
                 }
 
@@ -63,7 +64,8 @@ pipeline{
                    
                     steps{
                         echo "this is deploy stage"
-                      sh "ls -la ${pwd()}"  
+                        
+                        
                     }
             }
             
