@@ -22,10 +22,11 @@ pipeline{
                 }
             }
         }
-        stage("Build"){
-            parallel{
+        
+
+           
                 
-                stage("A"){
+           stage("build"){
                    
                     steps{
                         script{
@@ -38,22 +39,22 @@ pipeline{
                             }
                         }
                     }
-                }
-                stage("B"){
+            }
+            stage("end to end test"){
                    
                     steps{
-                        echo 'this is b'
+                        echo 'end to end'
                     }
-                }
-                stage("C"){
+            }
+            stage("deploy"){
                    
                     steps{
-                        echo "this is neither release nor main"
+                        echo "this is deploy stage"
                         
                     }
-                }
-            }
-        }
+             }
+            
+        
     }
     post{
         always{
