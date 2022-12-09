@@ -80,7 +80,7 @@ pipeline{
                         echo "this is neither release nor main"
                         withMaven(maven: '3.6.2', jdk: 'java_08', mavenSettingsConfig: 'suggest-lib-id') {
                             sh """
-                                mvn verify
+                                mvn deploy
                             """
                         }
                     }
