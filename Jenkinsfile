@@ -44,20 +44,25 @@ pipeline{
                 agent { docker 'openjdk:8-jre' }
                    
                     steps{
-                        echo 'end to end'
+                        echo 'openjdk8'
                     }
             }
+
             stage("e2e python"){
                 agent { docker 'python:2.7.18-slim-stretch' }
+                steps{
+                    echo 'python'
+                }
 
             }
+
             stage("deploy"){
                    
                     steps{
                         echo "this is deploy stage"
                         
                     }
-             }
+            }
             
         
     }
