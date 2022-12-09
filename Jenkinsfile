@@ -45,7 +45,7 @@ pipeline{
                    
                     steps{
                         
-                        sh 'java -jar <project jar file name>.jar'
+                       
                         echo 'openjdk8'
                      
                     }
