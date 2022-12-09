@@ -41,10 +41,13 @@ pipeline{
                     }
             }
             stage("e2e java"){
-                agent { docker 'openjdk:8-jre' }
+                
                    
                     steps{
+                        
+                        sh 'java -jar <project jar file name>.jar'
                         echo 'openjdk8'
+                        sh "ls -la ${pwd()}"
                     }
             }
 
@@ -60,7 +63,7 @@ pipeline{
                    
                     steps{
                         echo "this is deploy stage"
-                        
+                      sh "ls -la ${pwd()}"  
                     }
             }
             
