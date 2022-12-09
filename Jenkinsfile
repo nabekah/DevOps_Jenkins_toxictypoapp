@@ -47,7 +47,7 @@ pipeline{
                         
                         sh 'java -jar <project jar file name>.jar'
                         echo 'openjdk8'
-                        sh "ls -la ${pwd()}"
+                     
                     }
             }
 
