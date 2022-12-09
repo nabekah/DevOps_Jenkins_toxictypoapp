@@ -56,4 +56,16 @@
         </plugins>
     </build>
 
+<distributionManagement>
+    <repository>
+        <id>central</id>
+        <name>76e8cdddaf21-releases</name>
+        <url>http://52.88.93.193:8082/artifactory/libs-snapshot-local</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>76e8cdddaf21-snapshots</name>
+        <url>http://52.88.93.193:8082/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
+</distributionManagement>
 </project>
