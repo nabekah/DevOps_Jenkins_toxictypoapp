@@ -35,8 +35,8 @@ pipeline{
                             env.VERSION='1.6'
                             withMaven(maven: '3.6.2', jdk: 'java_08', mavenSettingsConfig: 'suggest-lib-id') {
                             sh """
-                                //mvn versions:set -DnewVersion=1.0-SNAPSHOT
-                                mvn verify
+                               
+                                mvn deploy
                             """
                             }
                         }
