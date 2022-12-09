@@ -40,11 +40,16 @@ pipeline{
                         }
                     }
             }
-            stage("end to end test"){
+            stage("e2e java"){
+                agent { docker 'openjdk:8-jre' }
                    
                     steps{
                         echo 'end to end'
                     }
+            }
+            stage("e2e python"){
+                agent { docker 'python:2.7.18-slim-stretch' }
+
             }
             stage("deploy"){
                    
