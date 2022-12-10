@@ -48,17 +48,9 @@ pipeline{
                         unstash 'target'
                         script{  
                             sh "ls -la ${pwd()}"
-                            docker.image('adoptopenjdk/openjdk8').withRun ('-it -p8088:8089 -u root' ,'java -version' ) {
+                            docker.image('adoptopenjdk/openjdk8').run ('-p8088:8089 -u root' ,'java ./target/toxictypoapp-1.0-SNAPSHOT.jar' ) {
                               
-                               sh "pwd"
-                                sh "ls -l"
-                               
-                                
-                                sh 'sleep 2'
-                               
-                               
-                            // Run command
-                            }
+                             echo Container.id
                              
                             
 
