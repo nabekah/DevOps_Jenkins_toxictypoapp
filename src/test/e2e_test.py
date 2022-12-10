@@ -43,7 +43,7 @@ def getArg(args,name,i,d):
 
 start_time = time.time()
 
-server=getArg(sys.argv,"Server",1,"localhost:8080")
+server=getArg(sys.argv,"Server",1,"localhost:8088")
 testFile=getArg(sys.argv,"Test level",2,"sanity")
 wt=int(getArg(sys.argv,"Wait time",3,"0"))
 
