@@ -54,7 +54,8 @@ pipeline{
                                 sh"ls -l"
 
                                 sh 'sleep 2'
-                                sh 'curl http://0.0.0.0:8089'
+                               
+                               sh"ls -l target"
                             // Run command
                             }
                         }
