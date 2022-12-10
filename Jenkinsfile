@@ -46,9 +46,12 @@ pipeline{
                     steps{
                         script{  
                             sh "ls -la ${pwd()}"
-                            docker.image('openjdk:8-jre').withRun('-p 8084:8080 --name java-e2e -v ${pwd}:/app', 'java - jar /app/target/toxictypoapp-1.0-SNAPSHOT.jar') {
+                            docker.image('openjdk:8-jre').withRun('-p 8089:8080 --name java-e2e -v ${pwd}:/app', 'java - jar /app/target/toxictypoapp-1.0-SNAPSHOT.jar') {
                                 
                                 sh "ls -la ${pwd()}"
+
+                                sh 'sleep 2'
+                                sh 'curl http://0.0.0.0:8089'
                             // Run command
                             }
                         }
