@@ -52,7 +52,7 @@ pipeline{
                                
                                 sh "pwd"
                                 sh"ls -l"
-
+                                sh "java -jar ./target/toxictypoapp-1.0-SNAPSHOT.jar"
                                 sh 'sleep 2'
                                
                                sh"ls -l target"
