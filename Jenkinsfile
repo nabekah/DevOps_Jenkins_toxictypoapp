@@ -49,7 +49,14 @@ pipeline{
                         script{  
                             sh "ls -la ${pwd()}"
                             docker.image('openjdk:8-jre').withRun('--name java-test -p8088:8089','nohup java -jar ./target/toxictypoapp-1.0-SNAPSHOT.jar &'){c ->
+                               sh "pwd"
+                                sh"ls -l"
                                
+                                
+                                sh 'sleep 1'
+                               
+                               sh"ls -l target"
+                            // Run command
                                docker image('python:2.7.18-slim-stretch').inside('-p8188:8184 --name python-test') {
                                     sh """
                                         cd scr/test
@@ -64,14 +71,7 @@ pipeline{
 
 
                                
-                                sh "pwd"
-                                sh"ls -l"
-                               
                                 
-                                sh 'sleep 1'
-                               
-                               sh"ls -l target"
-                            // Run command
                             
                             }
                         }
