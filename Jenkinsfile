@@ -54,17 +54,7 @@ pipeline{
                                
                                 
                                 sh 'sleep 1'
-                               docker.image('python:2.7.18-slim-stretch').inside('-p8188:8188') {
-                                            
-                                            sh 'cd ./src/test'
-                                            sh 'ls -l'
-                                            sh 'pip install -r ./src/test/requirements.txt'
-                                            sh 'ls -l src'
-                                            sh 'python ./src/test/e2e_test.py "52.88.93.193:8088" "./src/test/e2e" "2"'
-                                            sh 'python ./src/test/e2e_test.py "52.88.93.193:8088" "./src/test/sanity" "2"'
-
-                                            
-                                    }
+                               
                                
                             // Run command
                              
@@ -79,9 +69,23 @@ pipeline{
             stage("e2e python"){
                 
                 steps{
+                   unstash 'target'
                    sh "ls -la ${pwd()}"
                     echo 'python'
                     sh 'printenv'
+                    script{
+                        docker.image('python:2.7.18-slim-stretch').inside('-p8188:8188') {
+                                            
+                                            sh 'cd ./src/test'
+                                            sh 'ls -l'
+                                            sh 'pip install -r ./src/test/requirements.txt'
+                                            sh 'ls -l src'
+                                            sh 'python ./src/test/e2e_test.py "0.0.0.0:8088" "./src/test/e2e" "2"'
+                                            sh 'python ./src/test/e2e_test.py "0.0.0.0:8088" "./src/test/sanity" "2"'
+
+                                            
+                                    }
+                    }
                        
                 }
 
