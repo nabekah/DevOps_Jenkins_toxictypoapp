@@ -57,23 +57,19 @@ pipeline{
                                
                                sh"ls -l target"
                             // Run command
-                               docker image('python:2.7.18-slim-stretch').inside('-p8188:8184 --name python-test') {
-                                    sh """
-                                        cd scr/test
-                                        pip install -r requirements.txt
-                                        sh 'ls -l scr'
-                                        pyhon e2e_test.py "0.0.0.0:8088" "e2e" 2
-                                        pyhon e2e_test.py "0.0.0.0:8088" "sanity" 2
-
-                                    """
-                               }
-
-
-
-                               
-                                
-                            
+                             
                             }
+
+                            docker image('python:2.7.18-slim-stretch').inside('-p8188:8184 --name python-test') {
+                                    
+                                       sh 'cd scr/test'
+                                       sh 'pip install -r requirements.txt'
+                                       sh 'ls -l scr'
+                                       sh 'pyhon e2e_test.py "0.0.0.0:8088" "e2e" '2''
+                                        sh 'pyhon e2e_test.py "0.0.0.0:8088" "sanity" '2''
+
+                                    
+                               }
                         }
                         
                     }
