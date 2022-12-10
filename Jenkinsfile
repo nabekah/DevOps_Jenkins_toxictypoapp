@@ -53,6 +53,7 @@ pipeline{
                                 sh "pwd"
                                 sh"ls -l"
                                 sh 'nohup java -jar ./target/toxictypoapp-1.0-SNAPSHOT.jar &'
+                                sh 'curl http://0.0.0.0:8088'
                                 sh 'sleep 2'
                                
                                sh"ls -l target"
