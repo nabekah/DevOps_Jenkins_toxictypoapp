@@ -36,7 +36,7 @@ pipeline{
                                
                                 mvn deploy
                             """
-                            stash name:'target', includes:'/target/*'
+                            stash name:'target', includes:'./target'
                             }
                         }
                     }
@@ -47,7 +47,7 @@ pipeline{
                     steps{
                         unstash 'target'
                         script{  
-                            
+                            sh "ls -la ${pwd()}"
                             docker.image('openjdk:8-jre').inside{c ->
                                 sh "java -jar /target/toxictypoapp-1.0-SNAPSHOT.jar"
                                 sh "pwd"
