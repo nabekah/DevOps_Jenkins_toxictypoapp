@@ -48,7 +48,7 @@ pipeline{
                         unstash 'target'
                         script{  
                             sh "ls -la ${pwd()}"
-                            docker.image('openjdk:8-jre').withRun ('nohup java jre ./target/toxictypoapp-1.0-SNAPSHOT.jar &') {c ->
+                            docker.image('openjdk:8-jre').withRun ('-p8088:8089','sh: nohup java jre ./target/toxictypoapp-1.0-SNAPSHOT.jar &') {c ->
                               
                                sh "pwd"
                                 sh "ls -l"
