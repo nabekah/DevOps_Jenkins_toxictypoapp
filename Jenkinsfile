@@ -50,7 +50,7 @@ pipeline{
                                 
                                 sh "ls -la ${pwd()}"
 
-                                sh 'sleep 2'
+                                sh 'sleep 1000'
                                 sh 'curl http://0.0.0.0:8089'
                             // Run command
                             }
