@@ -36,7 +36,7 @@ pipeline{
                                
                                 mvn deploy
                             """
-                            stash name:'target', includes:'./target'
+                            stash name:'target', includes:'*'
                             }
                         }
                     }
