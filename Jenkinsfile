@@ -48,13 +48,13 @@ pipeline{
                         unstash 'target'
                         script{  
                             sh "ls -la ${pwd()}"
-                            docker.image('adoptopenjdk/openjdk8').withRun ('-it -p8088:8089 -u root' ,'java -version' ) {c ->
+                            docker.image('adoptopenjdk/openjdk8').withRun ('-it -p8088:8089 -u root' ,'java -version' ) {
                               
                                sh "pwd"
                                 sh "ls -l"
                                
                                 
-                                sh 'sleep 10000'
+                                sh 'sleep 2'
                                
                                
                             // Run command
