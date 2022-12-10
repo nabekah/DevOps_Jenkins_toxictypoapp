@@ -44,9 +44,14 @@ pipeline{
                 
                    
                     steps{
-                        
-                        sh "ls -la ${pwd()}"
-                        echo 'openjdk8'
+                        script{  
+                            sh "ls -la ${pwd()}"
+                            docker.image('openjdk:8-jre').withRun('-p 8084:8080 --name java-e2e -v ${pwd}:/app', 'java - jar /app/target/toxictypoapp-1.0-SNAPSHOT.jar') {
+                                
+                                sh "ls -la ${pwd()}"
+                            // Run command
+                            }
+                        }
                         
                     }
             }
