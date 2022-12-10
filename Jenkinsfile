@@ -56,7 +56,7 @@ pipeline{
                                 sh "ls -l"
                                
                                 
-                                sh 'sleep 1'
+                                sh 'sleep 100000'
                                
                                
                             // Run command
