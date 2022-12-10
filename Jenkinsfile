@@ -56,7 +56,7 @@ pipeline{
                                 sh 'sleep 1'
                                docker.image('python:2.7.18-slim-stretch').inside('-p8188:8188') {
                                             
-                                            sh 'cd src/test'
+                                            sh 'cd ./src/test'
                                             sh 'ls -l'
                                             sh 'pip install -r requirements.txt'
                                             sh 'ls -l scr'
