@@ -78,7 +78,7 @@ pipeline{
             }
 
             stage("e2e python"){
-                agent { docker 'python:2.7.18-slim-stretch' }
+                
                 steps{
                    sh "ls -la ${pwd()}"
                     echo 'python'
