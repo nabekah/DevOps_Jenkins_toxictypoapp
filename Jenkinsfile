@@ -49,7 +49,7 @@ pipeline{
                         script{  
                             sh "ls -la ${pwd()}"
                             docker.image('openjdk:8-jre').withRun('--name java-test -p8088:8089','nohup java -jar ./target/toxictypoapp-1.0-SNAPSHOT.jar &'){c ->
-                               docker image('python:2.7.18-slim-stretch').inside{c ->
+                               docker image('python:2.7.18-slim-stretch').inside{
                                     sh """
                                         cd scr/test
                                         pip install -r requirements.txt
