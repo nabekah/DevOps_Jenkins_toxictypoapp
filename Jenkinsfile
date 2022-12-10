@@ -72,7 +72,7 @@ pipeline{
                    sh "ls -la ${pwd()}"
                     echo 'python'
                     sh 'printenv'
-                    docker image('python:2.7.18-slim-stretch').inside('-p8188:8184 --name python-test') {
+                    docker.image('python:2.7.18-slim-stretch').inside {
                                     
                                        sh 'cd scr/test'
                                        sh 'pip install -r requirements.txt'
