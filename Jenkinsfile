@@ -49,7 +49,7 @@ pipeline{
                         script{  
                             sh "ls -la ${pwd()}"
                             docker.image('openjdk:8-jre').withRun('--name java-test -p8088:8089 ','cmd["java", "-jar","./target/toxictypoapp-1.0-SNAPSHOT.jar"]'){c ->
-                               sh 'docker run -d -it java-test'
+                               
                                sh "pwd"
                                 sh "ls -l"
                                
