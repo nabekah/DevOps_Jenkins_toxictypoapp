@@ -58,7 +58,7 @@ pipeline{
                                             
                                             sh 'cd ./src/test'
                                             sh 'ls -l'
-                                            sh 'pip install -r ./src/testrequirements.txt'
+                                            sh 'pip install -r ./src/test/requirements.txt'
                                             sh 'ls -l src'
                                             sh './src/test/pyhon e2e_test.py "0.0.0.0:8088" "e2e" '2''
                                             sh './src/test/pyhon e2e_test.py "0.0.0.0:8088" "sanity" '2''
