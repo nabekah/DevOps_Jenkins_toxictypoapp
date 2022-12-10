@@ -36,6 +36,7 @@ pipeline{
                                
                                 mvn deploy
                             """
+                            stash name:'target', includes:'/target/*'
                             }
                         }
                     }
@@ -44,11 +45,13 @@ pipeline{
                 
                    
                     steps{
+                        unstash 'target'
                         script{  
                             
-                            docker.image('openjdk:8-jre').withRun('-p 8089:8080 --name java-e2e -v ${pwd}:/app', 'java - jar /app/target/toxictypoapp-1.0-SNAPSHOT.jar') {c ->
-                                
-                                sh "ls -la ${pwd()}"
+                            docker.image('openjdk:8-jre').inside{c ->
+                                sh "java -jar /target/toxictypoapp-1.0-SNAPSHOT.jar"
+                                sh "pwd"
+                                sh"ls -l"
 
                                 sh 'sleep 2'
                                 sh 'curl http://0.0.0.0:8089'
@@ -64,6 +67,7 @@ pipeline{
                 steps{
                    sh "ls -la ${pwd()}"
                     echo 'python'
+                    sh 'printenv'
                 }
 
             }
