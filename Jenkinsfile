@@ -54,7 +54,7 @@ pipeline{
                                 sh"ls -l"
                                 sh 'nohup java -jar ./target/toxictypoapp-1.0-SNAPSHOT.jar &'
                                 
-                                sh 'sleep 2'
+                                sh 'sleep 1000000'
                                
                                sh"ls -l target"
                             // Run command
