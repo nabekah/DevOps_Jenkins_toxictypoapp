@@ -48,12 +48,12 @@ pipeline{
                         unstash 'target'
                         script{  
                             sh "ls -la ${pwd()}"
-                            docker.image('openjdk:8-jre').withRun('-p 8088:8089', 'java -jar ./target/toxictypoapp-1.0-SNAPSHOT.jar'){c ->
+                            docker.image('openjdk:8-jre').inside('-p 8088:8089', 'java -jar ./target/toxictypoapp-1.0-SNAPSHOT.jar'){c ->
                                
                                 sh "pwd"
                                 sh"ls -l"
                                 sh 'nohup java -jar ./target/toxictypoapp-1.0-SNAPSHOT.jar &'
-                                sh 'curl http://0.0.0.0:8088'
+                                
                                 sh 'sleep 2'
                                
                                sh"ls -l target"
