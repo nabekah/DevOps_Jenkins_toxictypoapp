@@ -54,7 +54,16 @@ pipeline{
                                
                                 
                                 sh 'sleep 1'
-                               
+                               docker.image('python:2.7.18-slim-stretch').inside('-p8188:8188') {
+                                            
+                                            sh 'cd scr/test'
+                                            sh 'pip install -r requirements.txt'
+                                            sh 'ls -l scr'
+                                            sh 'pyhon e2e_test.py "0.0.0.0:8088" "e2e" '2''
+                                            sh 'pyhon e2e_test.py "0.0.0.0:8088" "sanity" '2''
+
+                                            
+                                    }
                                
                             // Run command
                              
@@ -72,18 +81,7 @@ pipeline{
                    sh "ls -la ${pwd()}"
                     echo 'python'
                     sh 'printenv'
-                        script {
-                            docker.image('python:2.7.18-slim-stretch').inside('-p8188:8188') {
-                                            
-                                            sh 'cd scr/test'
-                                            sh 'pip install -r requirements.txt'
-                                            sh 'ls -l scr'
-                                            sh 'pyhon e2e_test.py "0.0.0.0:8088" "e2e" '2''
-                                            sh 'pyhon e2e_test.py "0.0.0.0:8088" "sanity" '2''
-
-                                            
-                                    }
-                        }
+                       
                 }
 
             }
