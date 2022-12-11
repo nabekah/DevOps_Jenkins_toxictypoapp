@@ -63,8 +63,9 @@ pipeline{
                     
                    
                     script{
-                        sh'docker run -d -p8088:8089 -v ${PWD}:/app -w /app testnode'
-                       
+                      
+                      sh  "docker run -d -p8088:8089 -w /app testnode"
+                       sleep 2
                     }
                        
                 }
