@@ -48,9 +48,10 @@ pipeline{
                     steps{
                         unstash 'target'
                         script{  
-                         dockerNode = docker.build("node", ".").withRun('-p8088:8089'){
+                         dockerNode = docker.build("node", ".")
+                             docker.run('-p8088:8089')
                              sh "ls -la ${pwd()}"
-                             sleep 1000
+                             sleep 100
                              docker.image('python:2.7.18-slim-stretch').inside('-p8188:8188') {
                                             
                                             sh 'cd ./src/test'
@@ -63,7 +64,7 @@ pipeline{
                                             
                                     }
 
-                            }
+                            
                            
                         }
                         
