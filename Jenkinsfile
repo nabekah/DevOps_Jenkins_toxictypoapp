@@ -53,17 +53,7 @@ pipeline{
                             sh 'docker run -d -p8088:8089 -v ${PWD}:/app -w /app testnode'
                              sh "ls -la ${pwd()}"
                              sleep 100
-                             docker.image('python:2.7.18-slim-stretch').inside('-p8188:8188') {
-                                            
-                                            sh 'cd ./src/test'
-                                            sh 'ls -l'
-                                            sh 'pip install -r ./src/test/requirements.txt'
-                                            sh 'ls -l src'
-                                            sh 'python ./src/test/e2e_test.py "0.0.0.0:8088" "./src/test/e2e" "2"'
-                                            sh 'python ./src/test/e2e_test.py "0.0.0.0:8088" "./src/test/sanity" "2"'
-
-                                            
-                                    }
+                             
 
                             
                            
