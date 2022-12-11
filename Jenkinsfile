@@ -50,6 +50,18 @@ pipeline{
                         script{  
                          dockerNode = docker.build("node", ".").withRun('-p8088:8089'){
                              sh "ls -la ${pwd()}"
+                             sleep 1000
+                             docker.image('python:2.7.18-slim-stretch').inside('-p8188:8188') {
+                                            
+                                            sh 'cd ./src/test'
+                                            sh 'ls -l'
+                                            sh 'pip install -r ./src/test/requirements.txt'
+                                            sh 'ls -l src'
+                                            sh 'python ./src/test/e2e_test.py "0.0.0.0:8088" "./src/test/e2e" "2"'
+                                            sh 'python ./src/test/e2e_test.py "0.0.0.0:8088" "./src/test/sanity" "2"'
+
+                                            
+                                    }
 
                             }
                            
@@ -66,17 +78,7 @@ pipeline{
                     echo 'python'
                     sh 'printenv'
                     script{
-                        docker.image('python:2.7.18-slim-stretch').inside('-p8188:8188') {
-                                            
-                                            sh 'cd ./src/test'
-                                            sh 'ls -l'
-                                            sh 'pip install -r ./src/test/requirements.txt'
-                                            sh 'ls -l src'
-                                            sh 'python ./src/test/e2e_test.py "0.0.0.0:8088" "./src/test/e2e" "2"'
-                                            sh 'python ./src/test/e2e_test.py "0.0.0.0:8088" "./src/test/sanity" "2"'
-
-                                            
-                                    }
+                        echo "this is empy"
                     }
                        
                 }
