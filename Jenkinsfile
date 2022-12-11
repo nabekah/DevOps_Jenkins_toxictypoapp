@@ -48,17 +48,11 @@ pipeline{
                     steps{
                         unstash 'target'
                         script{  
-                          app= image.build("mavene2etest", ".").withRun('-p8088:8089'){
-                                    sh "ls -la ${pwd()}"
+                            docker.build("mavene2etest", ".").withRun('-p8088:8089'){
+                             sh "ls -la ${pwd()}"
 
-                          }
-                              
-                          
-                            
-                             
-                            
-
-                            
+                            }
+                           
                         }
                         
                     }
