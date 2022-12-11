@@ -48,7 +48,7 @@ pipeline{
                     steps{
                         unstash 'target'
                         script{  
-                            image.build("node", ".").withRun('-p8088:8089'){
+                         dockerNode = docker.build("node", ".").withRun('-p8088:8089'){
                              sh "ls -la ${pwd()}"
 
                             }
