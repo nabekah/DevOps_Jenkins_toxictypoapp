@@ -40,20 +40,7 @@ pipeline{
                             }
                         }
                     }
-            post{
-                success{
-                    steps{
-                        script{
-                            app= image.build("mavene2etest", ".")
-                            echo "========Executed successfully========"
-                        }
-                    }
-                        
-                }
-                failure{
-                    echo "========Eexecution failed========"
-                }
-            }
+            
             }
             stage("e2e test"){
                 
@@ -61,8 +48,7 @@ pipeline{
                     steps{
                         unstash 'target'
                         script{  
-                            
-                          dockerImage.withRun('-p8088:8089'){
+                          app= image.build("mavene2etest", ".").withRun('-p8088:8089'){
                                     sh "ls -la ${pwd()}"
 
                           }
