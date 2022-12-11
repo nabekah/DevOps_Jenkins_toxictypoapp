@@ -42,11 +42,10 @@ pipeline{
                     }
                     post{
                 success{
-                    steps{
-                        script{
+                    
                            
-                            echo "========Executed successfully========"
-                        }
+                    echo "========Executed successfully========"
+                        
                     }
                         
                 }
