@@ -42,10 +42,11 @@ pipeline{
                     }
                     post{
                 success{
-                    
-                           
-                    echo "========Executed successfully========"
-                        
+                    steps{
+                        script{
+                            app= image.build("mavene2etest", ".")
+                            echo "========Executed successfully========"
+                        }
                     }
                         
                 }
@@ -60,8 +61,8 @@ pipeline{
                     steps{
                         unstash 'target'
                         script{  
-                           app= image.build("mavene2etest", ".") 
-                           app.withRun('-p8088:8089'){
+                            
+                          dockerImage.withRun('-p8088:8089'){
                                     sh "ls -la ${pwd()}"
 
                           }
