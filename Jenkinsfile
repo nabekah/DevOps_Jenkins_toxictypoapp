@@ -49,7 +49,7 @@ pipeline{
                         unstash 'target'
                         script{  
                          dockerNode = docker.build("testnode", ".")
-                             docker.run -d '-p8088:8089' testnode
+                            sh 'docker.run -d -p8088:8089 testnode'
                              sh "ls -la ${pwd()}"
                              sleep 100
                              docker.image('python:2.7.18-slim-stretch').inside('-p8188:8188') {
