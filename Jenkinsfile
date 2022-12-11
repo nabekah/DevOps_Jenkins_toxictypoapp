@@ -40,7 +40,7 @@ pipeline{
                             }
                         }
                     }
-                    post{
+            post{
                 success{
                     steps{
                         script{
