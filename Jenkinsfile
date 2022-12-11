@@ -42,8 +42,12 @@ pipeline{
                     }
                     post{
                 success{
-                    dockerImage = docker.build("mavene2etest",".")
-                    echo "========Executed successfully========"
+                    steps{
+
+                        dockerImage = docker.build("mavene2etest",".")
+                        echo "========Executed successfully========"
+                    }
+                        
                 }
                 failure{
                     echo "========Eexecution failed========"
