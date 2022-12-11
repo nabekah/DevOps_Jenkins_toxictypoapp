@@ -44,8 +44,8 @@ pipeline{
                 success{
                     steps{
                         script{
-                        dockerImage = docker.build("mavene2etest",".")
-                        echo "========Executed successfully========"
+                           
+                            echo "========Executed successfully========"
                         }
                     }
                         
@@ -61,8 +61,8 @@ pipeline{
                     steps{
                         unstash 'target'
                         script{  
-                            
-                          dockerImage.withRun('-p8088:8089'){
+                           app= image.build("mavene2etest", ".") 
+                           app.withRun('-p8088:8089'){
                                     sh "ls -la ${pwd()}"
 
                           }
