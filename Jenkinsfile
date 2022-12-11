@@ -49,6 +49,7 @@ pipeline{
                         unstash 'target'
                         script{  
                          dockerNode = docker.build("testnode", ".")
+                         sleep 1
                             sh 'docker.run -d -p8088:8089 testnode'
                              sh "ls -la ${pwd()}"
                              sleep 100
