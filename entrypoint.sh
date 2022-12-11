@@ -1,3 +1,3 @@
 #!bin/bash
 
-java -jar ./app/toxictypoapp-1.0-SNAPSHOT.jar
+java -jar toxictypoapp-1.0-SNAPSHOT.jar
