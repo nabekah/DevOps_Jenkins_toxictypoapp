@@ -34,7 +34,7 @@ pipeline{
                             withMaven(maven: '3.6.2', jdk: 'java_08', mavenSettingsConfig: 'suggest-lib-id') {
                             sh """
                                
-                                mvn deploy
+                               mvn verify
                             """
                             stash name:'target', includes:'*'
                             }
@@ -74,8 +74,7 @@ pipeline{
                                             sh 'ls -l src'
                                             sh 'python ./src/test/e2e_test.py "http://52.88.93.193:8088" "./src/test/e2e" "2"'
                                             sh 'python ./src/test/e2e_test.py "http://52.88.93.193:8088" "./src/test/sanity" "2"'
-
-                                            
+ 
                                     }
                     }
                        
