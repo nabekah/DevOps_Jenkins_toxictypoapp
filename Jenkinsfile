@@ -49,14 +49,7 @@ pipeline{
                         unstash 'target'
                         script{  
                          dockerNode = docker.build("testnode", ".")
-                         sleep 2
-                            sh 'docker run -d -p8088:8089 -v ${PWD}:/app -w /app testnode'
-                             sh "ls -la ${pwd()}"
-                             sleep 100
-                             
-
-                            
-                           
+                          
                         }
                         
                     }
@@ -66,11 +59,12 @@ pipeline{
                 
                 steps{
                    unstash 'target'
-                   sh "ls -la ${pwd()}"
-                    echo 'python'
-                    sh 'printenv'
+                   
+                    
+                   
                     script{
-                        echo "this is empy"
+                        sh'docker run -d -p8088:8089 -v ${PWD}:/app -w /app testnode'
+                       
                     }
                        
                 }
