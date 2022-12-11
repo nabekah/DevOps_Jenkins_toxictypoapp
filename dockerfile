@@ -8,4 +8,4 @@ COPY entrypoint.sh entrypoint.sh
 
 RUN chmod +x  entrypoint.sh
 #  CMD java -jar toxictypoapp-1.0-SNAPSHOT.jar
-#  ENTRYPOINT [ "entrypoint.sh" ]
+ ENTRYPOINT [ "/bin/bash", "entrypoint.sh" ]
