@@ -15,10 +15,10 @@ pipeline{
             }
             post{
                 success{
-                    echo "========Executed successfully========"
+                    echo "========checkout Executed successfully========"
                 }
                 failure{
-                    echo "========Eexecution failed========"
+                    echo "========checkout Eexecution failed========"
                 }
             }
         }
@@ -40,17 +40,29 @@ pipeline{
                             }
                         }
                     }
+                    post{
+                success{
+                    dockerImage = docker.build("mavene2etest",".")
+                    echo "========Executed successfully========"
+                }
+                failure{
+                    echo "========Eexecution failed========"
+                }
             }
-            stage("e2e java"){
+            }
+            stage("e2e test"){
                 
                    
                     steps{
                         unstash 'target'
                         script{  
                             
-                         app = docker.image('adoptopenjdk/openjdk8').run ('-it -p8088:8089 ' ,'java -jar ./target/toxictypoapp-1.0-SNAPSHOT.jar' ) 
+                          dockerImage.withRun('-p8088:8089'){
+                                    sh "ls -la ${pwd()}"
+
+                          }
                               
-                              sh "ls -la ${pwd()}"
+                          
                             
                              
                             
