@@ -1,4 +1,3 @@
-
 pipeline{
     agent any
     tools {
@@ -72,8 +71,8 @@ pipeline{
                                             sh 'ls -l'
                                             sh 'pip install -r ./src/test/requirements.txt'
                                             sh 'ls -l src'
-                                            sh 'python ./src/test/e2e_test.py "52.88.93.193:8088" "./src/test/e2e" "2"'
-                                            sh 'python ./src/test/e2e_test.py "52.88.93.193:8088" "./src/test/sanity" "2"'
+                                            sh 'python ./src/test/e2e_test.py "test_server:8088" "./src/test/e2e" "2"'
+                                            sh 'python ./src/test/e2e_test.py "test_server:8088" "./src/test/sanity" "2"'
  
                                     }
                     }
