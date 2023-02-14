@@ -1,0 +1,85 @@
+ToxicTypo
+=========
+The ToxicTypo Application team is responsible for maintaining the ToxicTypo demostration. This is a web application in AWS which allows customers to try the suggest-lib we built earlier this week.
+They are a SaaS, so they expect "Continuos Deployment".
+They are part of the same company, so they subscribe to the "feature branches" philosophy: Developers work in feature branches, then make merge requests when they are ready. The master branch is CDed to AWS.
+
+
+Phase A - ToxicTypo Application
+-------------------------------
+Your tasks:
+1. Dockerize the ToxicTypo application (it is a java, SpringBoot web application).
+2. Create an MBP in jenkins that:
+   - Serves developers on feature branches (does CI + testing).
+   - Serves production on master (does CI + testing + Deploy to AWS).
+3. Bonus: Handle a customer complaint: E2E tests take too long to run. They must run in less than 10 seconds.
+
+Work plan:
+1. Download the ToxicTypoApp to your local machine.
+2. Open a new repository in your GitLab, and upload it there.
+3. Dockerize the application:
+   a. Use a maven image for the build (or build directly on Jenkins).
+   b. Use a java image for runtime:
+      - Some technical details:
+        - Build: `mvn verify`. The artifact is in `target` folder.
+        - Ports: The application runs on port 8080. Try it in your browser.
+   c. Use a Python 2.7 image to run the e2e tests:
+       - E2E tests: run the `src/test/e2e_tests.py` script.
+4. Create a Jenkins MBP:
+   - `feature/*`: Build, test, report on failure.
+   - `master`: Build, test, deploy to AWS.
+5. Bonus: Improve test performance by executing test batches concurrently.
+
+
+Phase B - ToxicTypo LB
+----------------------
+Toxic typo LB is based on ToxicTypoApp, but add an additional API: `http://<server:port>/api/name`
+- POST to it with a form param "name" to set the name.
+- GET it to know what the last set name is.
+
+We will use this app to excercise our use of AWS EC2, and particulary its Load Balancer (ELB or ALB).
+
+Since it is based on ToxicTypo, you can build on your previous work.
+
+Work plan:
+1. Push source to GitLab.
+2. Dockerize the app.
+3. Test locally:
+   a. That you have a working ToxicTypo.
+   b. That `/api/name` works.
+4. Create a Jenkins pipeline on master that:
+   a. Builds the application.
+   b. Builds the docker image.
+   c. Pushes the docker image to ECR.
+5. In AWS, create 2 EC2 instances and configure ALB as their gateway:
+   a. Each instance should serve a single ToxicTypoLB over port `8080`.
+   b. You should be able to call the new API from outside of AWS.
+6. Demonstrate to yourself that you are indeed accessing both servers (set & get different names).
+7. Improve the pipeline - after you pushed to ECR:
+   a. Remove instance1 from the ALB.
+   b. Update instance1 to the new docker image and restart it.
+   c. Register instance1 back to the ALB.
+   d. Do the same to instance2.
+
+
+Phase C (Bonus) - Parallelization
+---------------------------------
+Not had enough of ToxicTypo yet?
+Doesn't it take too much time to fully run CI?
+Let's see if we can speed it up some more...
+
+Your tasks:
+1. Pallelize your pipeline to reduce at least 20% of actual time.
+2. Add an E-mail report!
+
+
+---
+
+
+To hand in
+----------
+A zip file with your name, containing a directory with your name; in the directory:
+- `Dockerfile`
+- `entrypoint.sh`
+- `Jenkinsfile`
+
